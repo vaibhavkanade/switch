@@ -70,3 +70,4 @@ end
 
 gem 'mqtt'
 gem "dotenv"
+gem 'sidekiq', "~> 6.0"
