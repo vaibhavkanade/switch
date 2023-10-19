@@ -1,0 +1,16 @@
+<tr id="<%= dom_id appliance %>" >
+	<% state =  appliance.on? %>
+	<% status = state ? "checked": "unchecked" %>
+	<% label =  state ? "Off" : "On" %>
+	<% button_bg =  state ? "btn btn-danger" : "btn btn-primary" %>
+  <td><%= appliance.name %></td>
+  <td class="w-25 p-3"> <%= appliance.state %></td>
+  <td>
+  	<%= button_to label, toggle_appliance_path(appliance), method: :patch, remote: true, class: button_bg %>
+  	<% if false %>
+      <%= link_to 'Show', appliance %>
+      <%= link_to 'Edit', edit_appliance_path(appliance) %>
+      <%= link_to 'Destroy', appliance, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  </td>
+</tr>
