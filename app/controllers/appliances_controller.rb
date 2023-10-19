@@ -5,7 +5,17 @@ class AppliancesController < ApplicationController
 
   def toggle
     @appliance = Appliance.find(params[:id])
-    @appliance.on? ? @appliance.off! : @appliance.on!
+
+    mqtt_service = MqttService.new
+
+    if @appliance.on?
+      mqtt_service.publish("Home/#{@appliance.name}", 'Off')
+      @appliance.off!
+    else
+      mqtt_service.publish("Home/#{@appliance.name}", 'On')
+      @appliance.on!
+    end
+
     respond_to do |format|
       format.turbo_stream 
     end

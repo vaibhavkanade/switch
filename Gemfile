@@ -68,3 +68,5 @@ group :development do
   gem "pry"
 end
 
+gem 'mqtt'
+gem "dotenv"

@@ -79,6 +79,7 @@ GEM
     debug (1.8.0)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
+    dotenv (2.8.1)
     erubi (1.12.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -105,6 +106,7 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.5)
     minitest (5.20.0)
+    mqtt (0.6.0)
     msgpack (1.7.2)
     net-imap (0.4.1)
       date
@@ -199,8 +201,10 @@ DEPENDENCIES
   bootsnap
   cssbundling-rails
   debug
+  dotenv
   jbuilder
   jsbundling-rails
+  mqtt
   pry
   puma (~> 5.0)
   rails (~> 7.0.8)
