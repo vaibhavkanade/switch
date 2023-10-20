@@ -1,4 +1,4 @@
 web: env RUBY_DEBUG_OPEN=true bin/rails server
 js: yarn build --watch
 css: yarn watch:css
-worker: bundle exec sidekiq -c 5
+mqtt_subcriber: bundle exec sidekiq -q mqtt_subcribe -c 1 -v

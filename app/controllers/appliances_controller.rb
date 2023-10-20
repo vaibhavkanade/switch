@@ -9,10 +9,10 @@ class AppliancesController < ApplicationController
     mqtt_service = MqttService.new
 
     if @appliance.on?
-      mqtt_service.publish("Home/#{@appliance.name}", 'Off')
+      mqtt_service.publish(@appliance.mqtt_topic, 'Off')
       @appliance.off!
     else
-      mqtt_service.publish("Home/#{@appliance.name}", 'On')
+      mqtt_service.publish(@appliance.mqtt_topic, 'On')
       @appliance.on!
     end
 
