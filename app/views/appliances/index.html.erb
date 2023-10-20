@@ -10,7 +10,12 @@
       </tr>
     </thead>
     <tbody>
-      <%= render @appliances %>
+      <% @appliances.each do |appliance| %>
+        <%= turbo_stream_from appliance %>
+        <tr id="<%= dom_id(appliance)%>">
+          <%= render partial: 'appliance', locals: { appliance: appliance } %>
+        </tr>
+      <% end %>
     </tbody>
   </table>
   <% if false %>

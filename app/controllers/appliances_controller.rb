@@ -7,17 +7,6 @@ class AppliancesController < ApplicationController
     @appliance = Appliance.find(params[:id])
 
     mqtt_service = MqttService.new
-
-    if @appliance.on?
-      mqtt_service.publish(@appliance.mqtt_topic, 'Off')
-      @appliance.off!
-    else
-      mqtt_service.publish(@appliance.mqtt_topic, 'On')
-      @appliance.on!
-    end
-
-    respond_to do |format|
-      format.turbo_stream 
-    end
+    mqtt_service.publish(@appliance.mqtt_topic, @appliance.value)
   end
 end

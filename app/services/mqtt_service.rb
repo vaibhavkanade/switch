@@ -14,14 +14,10 @@ class MqttService
   end
 
   def publish(topic, message)
-    result = nil
-    Timeout.timeout(MQTT_TIMEOUT) do
+    begin
+      result = nil
       @client.publish(topic, message, retain: true)
       result = "Message '#{message}' published to '#{topic}'"
-    end
-    result
-    rescue Timeout::Error
-      raise "MQTT publish operation timed out"
     rescue StandardError => e
       raise "MQTT publish error: #{e.message}"
     ensure
@@ -33,10 +29,8 @@ class MqttService
     begin
       topic, message = client.get(mqtt_topic)
       return topic, message
-    rescue Timeout::Error
-      puts "Timeout reached."
     rescue StandardError => e
-      puts "An unexpected error occurred: #{e.message}"
+      puts "An unexpected error occurred: MqttService#get #{e.message}"
     ensure
       client.disconnect
     end
